@@ -165,6 +165,8 @@ Returns:
 
 ### Quick start
 
+**Windows (PowerShell):**
+
 ```powershell
 # 1. Start Postgres (pgvector), RabbitMQ, and Ollama; the models are pulled automatically
 docker compose up -d
@@ -172,6 +174,8 @@ docker compose up -d
 # 2. Run the app
 .\mvnw.cmd spring-boot:run
 ```
+
+**Linux / macOS (bash):**
 
 ```bash
 # 1. Start Postgres (pgvector), RabbitMQ, and Ollama; the models are pulled automatically
@@ -187,9 +191,13 @@ First startup pulls the Ollama models into a named volume via the `ollama-init` 
 
 Once the app is healthy, `scripts/demo.ps1` (PowerShell) or `scripts/demo.sh` (bash, requires `curl` and `jq`) posts the bundled 300-comment corpus (`data/comments-300.ndjson`), waits for the RabbitMQ analysis queue to drain, and runs three insight queries against the results.
 
+**Windows (PowerShell):**
+
 ```powershell
 .\scripts\demo.ps1 -Count 15   # a fast subset; omit -Count for the full 300 comments
 ```
+
+**Linux / macOS (bash):**
 
 ```bash
 ./scripts/demo.sh --count 15   # a fast subset; omit --count for the full 300 comments
