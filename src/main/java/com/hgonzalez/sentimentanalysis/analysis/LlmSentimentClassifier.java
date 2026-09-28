@@ -30,6 +30,7 @@ public class LlmSentimentClassifier implements SentimentClassifier {
 
     @Override
     public SentimentResult classify(String text) {
+        long start = System.nanoTime();
         try {
             LlmSentimentAssessment assessment = chatClient.prompt()
                     .options(ChatOptions.builder().temperature(0.0))
@@ -41,12 +42,18 @@ public class LlmSentimentClassifier implements SentimentClassifier {
                 throw new IllegalStateException("LLM returned no result");
             }
 
+            log.info("LLM classification took {}s (model={})", elapsedSeconds(start), modelId);
             return new SentimentResult(
                     assessment.label(), assessment.confidence(), assessment.aspects(),
-                    assessment.rationale(), ClassifierKind.LLM, modelId);
+                    ClassifierKind.LLM, modelId);
         } catch (Exception ex) {
-            log.warn("LLM classification failed, falling back to lexicon: {}", ex.getMessage());
+            log.warn("LLM classification failed after {}s, falling back to lexicon: {}",
+                    elapsedSeconds(start), ex.getMessage());
             return fallback.classify(text);
         }
+    }
+
+    private static String elapsedSeconds(long startNanos) {
+        return String.format("%.2f", (System.nanoTime() - startNanos) / 1_000_000_000.0);
     }
 }

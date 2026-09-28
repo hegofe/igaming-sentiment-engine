@@ -15,8 +15,5 @@ public record LlmSentimentAssessment(
         double confidence,
 
         @JsonPropertyDescription("Zero or more aspects the comment touches on, from the closed vocabulary")
-        List<Aspect> aspects,
-
-        @JsonPropertyDescription("One-sentence explanation of why this label and these aspects were chosen")
-        String rationale) {
+        List<Aspect> aspects) {
 }

@@ -13,7 +13,6 @@ public record CommentAnalysis(
         String sentiment,
         BigDecimal confidence,
         String[] aspects,
-        String rationale,
         String classifierKind,
         String modelId,
         Instant analysedAt) {

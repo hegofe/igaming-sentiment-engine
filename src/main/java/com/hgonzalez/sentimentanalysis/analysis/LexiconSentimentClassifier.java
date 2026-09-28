@@ -35,6 +35,6 @@ public class LexiconSentimentClassifier implements SentimentClassifier {
             label = SentimentLabel.NEUTRAL;
         }
 
-        return new SentimentResult(label, 0.5, List.of(), "Keyword-based fallback classification.", ClassifierKind.LEXICON_FALLBACK, "lexicon-v1");
+        return new SentimentResult(label, 0.5, List.of(), ClassifierKind.LEXICON_FALLBACK, "lexicon-v1");
     }
 }

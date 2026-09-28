@@ -51,7 +51,6 @@ public class CommentEmbeddingService {
                 result.label().name(),
                 result.confidence(),
                 aspectNames.toArray(String[]::new),
-                result.rationale(),
                 result.producedBy().name(),
                 result.modelId());
     }

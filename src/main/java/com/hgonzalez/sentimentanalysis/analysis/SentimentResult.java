@@ -9,7 +9,6 @@ public record SentimentResult(
         SentimentLabel label,
         double confidence,
         List<Aspect> aspects,
-        String rationale,
         ClassifierKind producedBy,
         String modelId) {
 }
